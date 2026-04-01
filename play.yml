@@ -1,0 +1,7 @@
+---
+- name: PLAY START
+  hosts: webserver
+  become: yes
+  roles:
+    - sample
+

@@ -1,0 +1,27 @@
+name: "Devops"
+on:
+  push:
+    branches: [main]
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
+
+      - name: Login in Docker
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.Docker_uname }}
+          password: ${{ secrets.Docker_pass }}
+
+      - name: Build the Docker image
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: asmina001/myapp:latest
+
+      - name: Run ansible
+        run: ansible-playbook play.yml
