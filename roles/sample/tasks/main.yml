@@ -20,5 +20,6 @@
     name: my-web-app
     image: asmina001/myapp:latest
     state: started
+    pull: true
     ports:
       - "80:80"
