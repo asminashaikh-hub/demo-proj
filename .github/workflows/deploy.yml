@@ -23,5 +23,10 @@ jobs:
           push: true
           tags: asmina001/myapp:latest
 
+      - name: SSH key
+        run: |
+           echo "${{secrets.ssh}}" > instance-key.pem
+           chmod 400 instance-key.pem
+
       - name: Run ansible
         run: ansible-playbook play.yml
